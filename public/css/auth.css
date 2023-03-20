@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+:root {
+	--brandColor:#008b8b;
+	--brandColorDark:#057272;
+}
+
+[v-cloak] {
+	opacity: 0;
+}
+
+  /* Set max-width for the container */
+  .container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+  /* Style the flex container */
+  .d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+/* Style the image containers */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33.33%;
+  height: 100vh;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+    height: 100vh;
+}
+
+/* Style the row to be a flex container */
+.row {
+  display: flex;
+}
+
+/* Center the row content horizontally */
+.justify-content-center {
+  justify-content: center;
+}
+
+/* Set the column width */
+.col-md-8 {
+  width: 100%;
+}
+
+.card {
+    margin: 2em 0;
+	padding:1em;
+}
+
+.card .card-header {
+  margin-bottom:10px;
+	text-align: center;
+	color:var(--brandColor);
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.form-group{
+  position: relative;
+}
+
+.form-group input{
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+  /* padding-left: 40px; */
+  text-align: right;
+}
+
+.form-group label{
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  pointer-events: none;
+  transition: all 0.5s ease-out;
+  transform-origin: top left;
+}
+
+.btn-primary {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+}
+
+.btn-primary:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.invalid-feedback {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.form-group:focus-within label {
+  top: -29px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
