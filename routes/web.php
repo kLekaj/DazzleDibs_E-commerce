@@ -3,6 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers\UserController;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\GoogleSocialiteController;
+use App\Http\Controllers\FacebookSocialiteController;
+use App\Http\Controllers\LinkedinSocialiteController;
+use App\Http\Controllers\GithubSocialiteController;
+use App\Http\Controllers\XmlParserController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\StripeController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +61,40 @@ Route::group(['prefix' => 'seller'], function () {
     Route::post('logout', 'SellerController@logout')->name('seller.logout');
 });
 
+Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
+Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
+
+Route::get('auth/facebook', [FacebookSocialiteController::class, 'redirectToFB']);
+Route::get('callback/facebook', [FacebookSocialiteController::class, 'handleCallback']);
+
+Route::get('auth/linkedin', [LinkedinSocialiteController::class, 'redirectToLinkedin']);
+Route::get('callback/linkedin', [LinkedinSocialiteController::class, 'handleCallback']);
+
+Route::get('auth/github', [GithubSocialiteController::class, 'redirectToGithub']);
+Route::get('callback/github', [GithubSocialiteController::class, 'handleCallback']);
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+Route::get("item-data", [XmlParserController::class, "parseXml"]);
+
+Route::get('/categories/{category}/products', [ProductController::class, 'index']);
+Route::get('/categories/{category}/search', [ProductController::class, 'search']);
+
+Route::post('/products/{productId}/addToCart', [ProductController::class, 'addToCart'])->name('products.addToCart');
+Route::post('/products/{productId}/removeFromCart', [ProductController::class, 'removeFromCart'])->name('products.removeFromCart');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::delete('/cart/{productId}', [CartController::class, 'removeItem'])->name('cart.removeItem');
+
+Route::get('stripe', [StripeController::class, 'stripe']);
+Route::post('stripe', [StripeController::class, 'stripePost'])->name('stripe.post');
+
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::get('/reviews/create/{productId}', [ReviewController::class, 'index'])->name('reviews.create');

@@ -17,13 +17,16 @@ return new class extends Migration
             $table->id('id')->unique();
             $table->string('email');
             $table->string('password')->default('lekajkejdi');
-            $table->string('first_name')->default('');
-            $table->string('last_name')->default('');
+            $table->string('name')->default('');
+            // $table->string('last_name')->default('');
             $table->string('phone')->default('');
             $table->string('address')->default('');
             $table->string('city')->default('');
             $table->string('country')->default('');
             $table->string('postal_code')->default('');
+            $table->string('social_id')->nullable();
+            $table->string('social_type')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }
