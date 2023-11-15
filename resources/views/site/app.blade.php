@@ -21,7 +21,7 @@
                     </a>
                     <ul class="product-links">
                         <li><a href="#" data-tip="Add to Wishlist"><i class="fas fa-heart"></i></a></li>
-                        <li><a href="#" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
+                        <li><a href="{{ route('products.show', $product->id) }}" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
                         <li>
                             <form action="{{ route('products.addToCart', $product->id) }}" method="POST" data-tip="Add to Cart">
                             @csrf

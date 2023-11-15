@@ -87,6 +87,7 @@ Route::get("item-data", [XmlParserController::class, "parseXml"]);
 
 Route::get('/categories/{category}/products', [ProductController::class, 'index']);
 Route::get('/categories/{category}/search', [ProductController::class, 'search']);
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
 Route::post('/products/{productId}/addToCart', [ProductController::class, 'addToCart'])->name('products.addToCart');
 Route::post('/products/{productId}/removeFromCart', [ProductController::class, 'removeFromCart'])->name('products.removeFromCart');

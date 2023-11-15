@@ -20,6 +20,11 @@ class ProductController extends Controller
     
         return view('site.app', ['products' => $products, 'category' => $category]);
     }
+
+    public function show(Product $product)
+    {
+        return view('site.product', ['product' => $product]);
+    }
     
 
     public function search(Request $request, Category $category)
